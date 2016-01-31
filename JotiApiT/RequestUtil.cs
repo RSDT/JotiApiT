@@ -22,7 +22,9 @@ namespace JotiApiT
             {
                 Logger.Log("RequestUtil", "Posting to " + url + " with " + data, Logger.LogLevel.Debug);
                 var response = await client.PostAsync(url, new StringContent(data));
-                return await response.Content.ReadAsStringAsync();
+                string result = await response.Content.ReadAsStringAsync();
+                Logger.Log("RequestUtil", result + " got from " + url, Logger.LogLevel.Debug);
+                return result;
             }
         }
 

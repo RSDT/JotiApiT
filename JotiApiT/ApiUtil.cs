@@ -31,8 +31,17 @@ namespace JotiApiT
             jsonObj.Add("ww", SHA1Util.SHA1HashStringForUTF8String(password));
 
             string result = await RequestUtil.Post(LinkBuilder.Build(new string[] { "login" }), jsonObj.ToString());
-            string key = JObject.Parse(result)["SLEUTEL"].ToString();
-            Logger.Log("ApiUtil", "Key aqquired: " + key, Logger.LogLevel.Info);
+            string key = String.Empty;
+
+
+            try
+            {
+                key = JObject.Parse(result)["SLEUTEL"].ToString();
+                Logger.Log("ApiUtil", "Key aqquired: " + key, Logger.LogLevel.Info);
+            } catch(Exception e)
+            {
+                Logger.Log("ApiUtil", result, Logger.LogLevel.Error);
+            }
             return key;
         }
 

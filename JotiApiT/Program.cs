@@ -10,11 +10,23 @@ namespace JotiApiT
     {
         static void Main(string[] args)
         {
+
+            start();
+        }
+
+        static async void start()
+        {
             CommandInterpreter interpreter = new CommandInterpreter();
-            interpreter.readCommand();
+            interpreter.fromSave();
+            await interpreter.startLoop();
 
-
+            interpreter.save();
+            Console.WriteLine("Press any key to exit.");      
             Console.Read();
         }
+
+
+
+
     }
 }

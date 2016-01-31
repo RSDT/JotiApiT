@@ -11,27 +11,40 @@ namespace JotiApiT
 
         public static LogLevel level = LogLevel.All;
 
+        public static ConsoleColor InfoColor = ConsoleColor.DarkYellow;
+
+        public static ConsoleColor DebugColor = ConsoleColor.DarkCyan;
+
+        public static ConsoleColor ErrorColor = ConsoleColor.Red;
+
         public static void Log(string id, string message, LogLevel logLevel)
         {
-            bool log = false;
-            switch(level)
+            bool shouldLog = false;
+
+            switch(logLevel)
             {
-                case LogLevel.All:
-                    log = true;
-                    break;
                 case LogLevel.Info:
-                    log = (logLevel == level);
+                    Console.ForegroundColor = InfoColor;
                     break;
-                case LogLevel.Errors:
-                    log = (logLevel == level);
+                case LogLevel.Debug:
+                    Console.ForegroundColor = DebugColor;
+                    break;
+                case LogLevel.Error:
+                    Console.ForegroundColor = ErrorColor;
                     break;
             }
-            if (log) { Console.WriteLine("[" + id + "] [" + DateTime.Now + "] " + message); }
+
+            shouldLog = (level == LogLevel.All || logLevel == level);
+
+            if (shouldLog) {
+                Console.WriteLine("[" + id + "] [" + logLevel + "] [" + DateTime.Now + "] " + message);
+                Console.ResetColor();
+            }
         }
 
         public enum LogLevel
         {
-            Errors,
+            Error,
             Info,
             Debug,
             All
