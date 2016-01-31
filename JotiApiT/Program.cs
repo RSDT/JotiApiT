@@ -10,6 +10,11 @@ namespace JotiApiT
     {
         static void Main(string[] args)
         {
+            CommandInterpreter interpreter = new CommandInterpreter();
+            interpreter.readCommand();
+
+
+            Console.Read();
         }
     }
 }
