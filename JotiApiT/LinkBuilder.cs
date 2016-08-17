@@ -17,6 +17,7 @@ namespace JotiApiT
             {
                 result += s + "/";
             }
+
             return result;
         }
 
