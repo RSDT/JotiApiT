@@ -60,7 +60,11 @@ namespace JotiApiT
                 switch(mainKeyword)
                 {
                     case "login":
+                        /*--- Start the login procedure ---*/
                         key = await ApiUtil.Login();
+
+                        /*--- Save the key to the settings file ---*/
+                        await save();
                         break;
                     case "logout":
                         ApiUtil.Username = String.Empty;
@@ -222,7 +226,7 @@ namespace JotiApiT
             }
         }  
 
-        public void save()
+        public async Task save()
         {
             JObject jObj = new JObject();
             jObj.Add("gebruiker", ApiUtil.Username);
@@ -233,7 +237,7 @@ namespace JotiApiT
 
             FileStream fStream = new FileStream(Environment.CurrentDirectory + @"\settings.json", FileMode.Create);
             StreamWriter sWriter = new StreamWriter(fStream);
-            sWriter.Write(jObj.ToString());
+            await sWriter.WriteAsync(jObj.ToString());
             sWriter.Flush();
             sWriter.Close();
             sWriter.Dispose();

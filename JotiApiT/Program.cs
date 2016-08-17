@@ -20,10 +20,13 @@ namespace JotiApiT
             interpreter.fromSave();
             await interpreter.startLoop();
 
-            interpreter.save();
+            await interpreter.save();
             Console.WriteLine("Press any key to exit.");      
             Console.Read();
+
         }
+
+
 
 
 

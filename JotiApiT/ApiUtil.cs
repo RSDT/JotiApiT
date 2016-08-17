@@ -45,6 +45,6 @@ namespace JotiApiT
             return key;
         }
 
-        public const string RootV2 = "http://jotihunt-api_v2.area348.nl/";   
+        public const string RootV2 = "http://jotihunt-api-v2.area348.nl/";   
     }
 }

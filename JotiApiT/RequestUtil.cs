@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace JotiApiT
 {
-    public class RequestUtil
+    public class RequestUtil : IDisposable
     {
 
         /// <summary>
@@ -45,7 +45,9 @@ namespace JotiApiT
             }
         }
 
-
-
+        public void Dispose()
+        {
+            
+        }
     }
 }
